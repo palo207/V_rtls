@@ -1,0 +1,274 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/index_new_css.css') }}">
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    {% if i == 1 %}
+    <script>
+        $(document).ready(function(){
+            $("#preparovanie").modal('show');
+        });
+    </script>
+    {% endif %}
+
+    {% if i == 2 %}
+    <script>
+        $(document).ready(function(){
+            $("#locate").modal('show');
+        });
+    </script>
+    {% endif %}
+
+
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"> -->
+
+    <title>{% block title %} {% endblock %}</title>
+  </head>
+  <body>
+    <!-- Vrchny JBtron -->
+    <div class="jumbotron p-3">
+        <div class = "well text-center">
+          <h1>{% block heading %}{% endblock %}<h1>
+          </div>
+      <a href="{{url_for('multilingual.language')}}">
+          <img src="{{ url_for('static',filename= 'layout.jpg') }}" alt="english">
+      </a>
+
+    <select class="selectpicker" data-width="fit">
+    <option data-content='<span class="flag-icon flag-icon-us"></span> English'>English</option>
+    <option  data-content='<span class="flag-icon flag-icon-mx"></span> Español'>Español</option>
+  </select>
+  </div>
+    <!-- Vrchny JBtron -->
+
+
+
+{% block body %}
+{% endblock %}
+
+<!-- forma na parovanie tagov -->
+<div id="mymodal" class="modal fade" role = "dialog" tabindex="-1">
+                <div class= "modal-dialog modal-dialog-centered">
+                <div class= "modal-content">
+                    <div class= "modal-header">
+
+                        <h4 class="modal-title">{{_('Spárovať tag')}}</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <form action ="{{url_for('multilingual.insert')}}" method="POST">
+
+
+                        <div class="form-group">
+                            <label>{{_('Čiarový kód')}} 1</label>
+                            <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" name="tag_id" required="1" >
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{_('Čiarový kód')}} 2</label>
+                            <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" name="object_id" required="1">
+
+                        </div>
+
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="submit">{{_('Spárovať tag')}}</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{_('Zavrieť')}}</button>
+                        </div>
+
+                        </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+<!-- forma na parovanie tagov -->
+
+<!-- forma na odparovanie tagov -->
+<div id="mymodal1" class="modal fade" role = "dialog" tabindex="-1">
+  <div class= "modal-dialog modal-dialog-centered">
+  <div class= "modal-content">
+      <div class= "modal-header">
+
+          <h4 class="modal-title">{{_('Odpárovať tag')}}</h4>
+      </div>
+      <div class="modal-body">
+
+          <form action ="{{url_for('multilingual.unpair')}}" method="POST">
+
+          <div class="form-group">
+              <label>{{_('RTLS Tag ID')}}</label>
+              <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" name="tag_id" required="1">
+
+          </div>
+
+
+          <div class="form-group">
+              <button class="btn btn-primary" type="submit">{{_('Odpárovať tag')}}</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">{{_('Zavrieť')}}</button>
+          </div>
+
+          </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- forma na odparovanie tagov -->
+
+
+<!-- Forma na lokalizáciu -->
+<div id="mymodal5" class="modal fade" role = "dialog"  tabindex="-1">
+  <div class= "modal-dialog modal-dialog-centered">
+  <div class= "modal-content">
+      <div class= "modal-header">
+
+      <h4 class="modal-title">{{_('Lokalizácia tagu')}}</h4>
+      </div>
+      <div class="modal-body">
+
+          <form action ="{{url_for('multilingual.locate')}}" method="POST">
+
+          <div class="form-group">
+              <label>{{_('Čiarový kód')}}</label>
+              <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" name="tag_id" required="1">
+
+          </div>
+
+
+          <div class="form-group">
+              <button class="btn btn-primary" type="submit">{{_('Lokalizovať')}}</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">{{_('Zavrieť')}}</button>
+          </div>
+
+          </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!--Forma na lokalizáciu-->
+
+{%if i ==2%}
+<!-- mapa lokalizacia -->
+<div id="locate" class="modal fade" role = "dialog"  tabindex="-1" >
+  <div class="modal-dialog modal-xl">
+  <div class= "modal-content">
+
+      <div class= "modal-header">
+          <h4 class="modal-title">{{_('Lokalizácia tagu')}}</h4>
+      </div>
+
+
+      <div class="modal-body">
+          <form action ="{{url_for('multilingual.located')}}" method="POST">
+
+<!--tabulka-->
+         <div class="form-group">
+         <div style="overflow: auto">
+          <table class="table table-striped">
+          <thead>
+            <tr>
+
+              <th scope="col">{{_('ID tagu')}}</th>
+              <th scope="col">{{_('Spárovaný príkaz')}}</th>
+              <th scope="col">{{_('ID zóny')}}</th>
+              <th scope="col">{{_('Typ zóny')}}</th>
+              <th scope="col">{{_('Názov zóny')}}</th>
+              <th scope="col">{{_('Vstup do zóny')}}</th>
+
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{mydata[0][0]}}</td>
+              <td>{{mydata[0][5]}}</td>
+              <td>{{mydata[0][1]}}</td>
+              <td>{{mydata[0][2]}}</td>
+              <td>{{mydata[0][3]}}</td>
+              <td>{{mydata[0][4]}}</td>
+            </tr>
+          </tbody>
+        </table>
+         </div>
+        </div>
+<!--tabulka-->
+
+
+<div class="container">
+<div class="form-group">
+
+
+<div id="obrazky">
+
+  <img src="{{ url_for('static',filename= 'layout.jpg') }}" class="mx-auto d-block img-thumbnail"  alt="Responsive image" >
+  <img src="{{ url_for('static',filename= 'dot.png') }}" class="blink_me"   style= "position: absolute; bottom: 50%; right: {{my_data[7]}}%;background :rgba(0, 0, 0, 0);height:50px;width:auto">
+</div>
+</div>
+</div>
+          <div class="form-group">
+               <button class="btn btn-secondary float-right" name="btn"  value= "close" type="submit">{{_('Zavrieť')}}</button>
+          </div>
+
+          </form>
+
+
+    </div>
+  </div>
+</div>
+</div>
+<!-- mapa lokalizacia -->
+{%endif%}
+
+<!-- Forma na preparovanie -->
+{%if i ==1%}
+<div id="preparovanie" class="modal fade" role = "dialog"  tabindex="-1" data-keyboard="false" data-backdrop="static">
+  <div class= "modal-dialog modal-dialog-centered">
+  <div class= "modal-content">
+      <div class= "modal-header">
+
+          <h4 class="modal-title">{{_('Prepárovanie tagu')}}</h4>
+      </div>
+      <div class="modal-body">
+
+          <form action ="{{url_for('multilingual.change_pair')}}" method="POST" >
+
+          <div class="form-group">
+
+              <p>{{_('Zadaný kód')}} <b>{{code1}}</b> {{_('je už spárovaný. Chcete ho prepárovať s vami zadaným kódom')}} <b>{{code2}}</b> :<p>
+
+          </div>
+
+
+          <div class="form-group">
+              <button class="btn btn-primary" name="yes" value={{code1}}$,${{code2}} type="submit">{{_('Áno')}}</button>
+              <button class="btn btn-primary" name="yes"  value= "nie" type="submit">{{_('Nie')}}</button>
+          </div>
+
+          </form>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+<!--Forma na preparovanie-->
+
+
+
+<!-- java scripts -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+  </body>
+</html>

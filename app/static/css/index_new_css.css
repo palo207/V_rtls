@@ -1,0 +1,67 @@
+#btn1 {
+  width: 250px;
+  height: 250px;
+  text-align: middle;
+  vertical-align:middle;
+  padding: 0px;
+  margin:30px;
+  font-size: 25px;
+}
+
+
+#obrazky{
+position: relative;
+}
+
+
+
+#cont1{
+  padding 0 px;
+  margin 5 px;
+  text-align: right;
+
+}
+
+#login{
+  background-color: silver;
+
+}
+
+#btn_login{
+  background-color: forestgreen;
+}
+
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+#obrazky{
+
+    position: fixed;
+    width: 100%;
+    max-width: 640px;
+    line-height: 0;
+    left:50%;
+    bottom:50%;
+}
+
+#bigone{
+     vertical-align: bottom;
+     position:fixed;
+     left:50%;
+     bottom:50%;
+
+}
+
+#smallone{
+    top: 500;
+    left:600;
+    position:absolute;
+    height:50px;
+}
