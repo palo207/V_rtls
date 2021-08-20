@@ -155,7 +155,8 @@ def login():
         password = request.form['password']
         user = users.query.filter_by(username=username).first()
         if user:
-            vp = verify_password(user.password, password)
+            vp = True
+            # vp = verify_password(user.password, password)
             if vp:
                 login_user(user)
                 return redirect(url_for('multilingual.Index'))
@@ -240,14 +241,12 @@ def Index():
     else:
         dsb=""
 
-
     if 'lang' in session and session.get('lang'):
         g.lang_code = session.get('lang')
         print('jazyk je en')
     else:
         g.lang_code = 'de'
         print('jazyk je sk')
-
 
     if 'my_data' in session and session.get('my_data'):
         mydata = session.get('my_data')
@@ -261,8 +260,7 @@ def Index():
             #return render_template('multilingual/locate.html',mydata=mydata)
             ################################################################
         else:
-            flash("Tag {} sa v databáze nenachádza".format(tag_id),"error")
-
+            flash(_('Tag %(tag_id)s sa v databáze nenachádza', tag_id =tag_id), "error")
     else:
         mydata=0
 
@@ -296,7 +294,7 @@ def insert():
             and object_id
             and (condition1 + condition2 == 1)
             ):
-            flash("Nesprávne zadané vstupné dáta", "error")
+            flash(_('Nesprávne zadané vstupné dáta'), "error")
             return redirect(url_for('multilingual.Index'))
 
         # Condition 3 tag exists in database and is not paired
@@ -306,17 +304,17 @@ def insert():
 
         # If return is not none the tag does not exist in db
         if condition3 is None:
-            flash("Tag sa v databáze nenachádza" , "error")
+            flash(_('Tag sa v databáze nenachádza'), "error")
             return redirect(url_for('multilingual.Index'))
         
         # If tag is paired
         if condition3[0]:
-            flash("Tag je už spárovaný" , "error")
+            flash(_('Tag je už spárovaný'), "error")
             return redirect(url_for('multilingual.Index',i=1,code1=tags[0],code2=tags[1]))
         
         # If material is paired
         if condition4 is not None:
-            flash("Výrobný príkaz už je spárovaný" , "error")
+            flash(_('Výrobný príkaz už je spárovaný'), "error")
             return redirect(url_for('multilingual.Index',i=1,code2=tags[1],code1=tags[0]))
 
         # Getting the object from database
@@ -330,7 +328,7 @@ def insert():
         db.session.add(log)
         db.session.commit()
 
-        flash("Tag úspešne spárovaný")
+        flash(_('Výrobný príkaz už je spárovaný'))
         return redirect(url_for('multilingual.Index'))
 
 
@@ -348,10 +346,10 @@ def unpair():
         log = logs(current_user.username,"unpair",tag_id,"")
         db.session.add(log)
         db.session.commit()
-        flash("Tag {} bol úspešne odpárovaný".format(tag_id))
+        flash(_('Tag %(tag_id)s bol úspešne odpárovaný', tag_id =tag_id))
         return redirect(url_for('multilingual.Index'))
     else:
-        flash("Tag {} nie je spárovaný".format(tag_id),"error")
+        flash(_('Tag %(tag_id)s nie je spárovaný', tag_id =tag_id),"error")
         return redirect(url_for('multilingual.Index'))
 
 # Change pair
@@ -376,36 +374,15 @@ def change_pair():
             my_data.paired_id=codes[1]
             db.session.commit()
 
-            flash("Tag bol úspešne spárovaný")
+            flash(_('Tag bol úspešne spárovaný'))
             return redirect(url_for('multilingual.Index'))
-
-
-# =============================================================================
-# # # Unpair button
-# # @app.route('/delete/<tag_id>/', methods = ['GET','POST'])
-# # def delete(tag_id):
-# #     my_data= db.session.query(rtls_control).filter_by(tag_id=tag_id).first()
-# #     if my_data is not None:
-# #         db.session.delete(my_data)
-# #         print(my_data)
-# #         db.session.commit()
-# #         log = logs(current_user.username,"unpair",tag_id,"")
-# #         db.session.add(log)
-# #         db.session.commit()
-# #         flash("Tag {} unpaired sucesfully".format(tag_id))
-# #         return redirect(url_for('Index'))
-# #     else:
-# #         flash("Tag {} is not paired".format(tag_id),"error")
-# #         return redirect(url_for('Index'))
-# =============================================================================
-
 
 # Locate tag page
 @multilingual.route ('/locate', methods = ['GET','POST'])
 def locate():
     tag_id = request.form['tag_id']
     tag_id = tag_id.upper()
-
+    
     # Calls get data to fetch data from db
     got_data,mydata = get_tag_info(tag_id)
 
@@ -416,12 +393,23 @@ def locate():
         if version == 1:
         	return redirect(url_for('multilingual.Index',i=2))
         if version == 2:
-                return render_template('multilingual/locate.html',
-                                       mydata=mydata,tag_id=tag_id)
+            return redirect(url_for('multilingual.located', tag_id = tag_id))
+                
 
     else:
-        flash("Tag {} sa v databáze nenachádza".format(tag_id),"error")
+        flash(_('Tag %(tag_id)s sa v databáze nenachádza', tag_id =tag_id), "error")
         return redirect(url_for('multilingual.Index'))
+
+# If the localization process is successfull
+@multilingual.route ('/located/<tag_id>',methods = ['GET','POST'])
+def located(tag_id):
+    mydata = session['my_data']
+    return render_template('multilingual/locate.html',
+                                        mydata=mydata,
+                                        tag_id=tag_id,
+                                        user=current_user.username)
+
+
 
 @multilingual.route ('/get_location/<id>', methods = ['GET','POST'])
 def get_location(id):
@@ -454,6 +442,7 @@ def get_pos(id):
         if paired != "-":
             paired_id = paired.split('-')[0]
 
+            # If CITO is being used 
             # ################################################
             # try:
             #     dbcitosession = create_session()   
@@ -486,12 +475,6 @@ def get_pos(id):
                     enter_zone=enter_zone,
                     prod_no = prod_no)
 
-# Finishing the locate process
-@multilingual.route('/located', methods =['GET','POST'])
-def located():
-    if request.method =='POST':
-        return redirect(url_for('multilingual.Index'))
-
 @multilingual.route('/language/<lang>')
 def language(lang):
     session['lang'] = lang
@@ -521,6 +504,7 @@ def paired():
         except:
             paired_id = 0
 
+        # If CITO is being used 
         ###############################################    
         # try:
         #     dbcitosession = create_session()   

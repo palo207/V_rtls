@@ -1,14 +1,14 @@
 # English translations for PROJECT.
-# Copyright (C) 2020 ORGANIZATION
+# Copyright (C) 2021 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-08-26 13:15+0200\n"
-"PO-Revision-Date: 2020-08-26 13:15+0200\n"
+"POT-Creation-Date: 2021-08-20 15:35+0200\n"
+"PO-Revision-Date: 2021-08-19 13:52+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
 "Language-Team: en <LL@li.org>\n"
@@ -18,154 +18,151 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: app/blueprints/multilingual/templates/multilingual/base.html:54
-#: app/blueprints/multilingual/templates/multilingual/base.html:74
-#: app/blueprints/multilingual/templates/multilingual/index.html:30
-#: app/templates/base.html:54 app/templates/base.html:74
-#: app/templates/index.html:30
-msgid "Spárovať tag"
-msgstr "Pair tag"
+#: app/blueprints/multilingual/routes.py:263
+#: app/blueprints/multilingual/routes.py:400
+#, python-format
+msgid "Tag %(tag_id)s sa v databáze nenachádza"
+msgstr "Tag %(tag_id)s is not present in the database"
 
-#: app/blueprints/multilingual/templates/multilingual/base.html:62
-#: app/blueprints/multilingual/templates/multilingual/base.html:68
-#: app/blueprints/multilingual/templates/multilingual/base.html:131
-#: app/templates/base.html:62 app/templates/base.html:68
-#: app/templates/base.html:131
-msgid "Čiarový kód"
-msgstr "Barcode"
+#: app/blueprints/multilingual/routes.py:297
+msgid "Nesprávne zadané vstupné dáta"
+msgstr "Incorrect input data"
 
-#: app/blueprints/multilingual/templates/multilingual/base.html:75
-#: app/blueprints/multilingual/templates/multilingual/base.html:106
-#: app/blueprints/multilingual/templates/multilingual/base.html:139
-#: app/blueprints/multilingual/templates/multilingual/base.html:209
-#: app/templates/base.html:75 app/templates/base.html:106
-#: app/templates/base.html:139 app/templates/base.html:209
-msgid "Zavrieť"
-msgstr "Close"
+#: app/blueprints/multilingual/routes.py:307
+msgid "Tag sa v databáze nenachádza"
+msgstr "Tag is not in the database"
 
-#: app/blueprints/multilingual/templates/multilingual/base.html:91
-#: app/blueprints/multilingual/templates/multilingual/base.html:105
-#: app/blueprints/multilingual/templates/multilingual/index.html:34
-#: app/templates/base.html:91 app/templates/base.html:105
-#: app/templates/index.html:34
-msgid "Odpárovať tag"
-msgstr "Unpair tag"
+#: app/blueprints/multilingual/routes.py:312
+msgid "Tag je už spárovaný"
+msgstr "Tag is already paired"
 
-#: app/blueprints/multilingual/templates/multilingual/base.html:98
-#: app/templates/base.html:98
-msgid "RTLS Tag ID"
-msgstr "RTLS Tag ID"
+#: app/blueprints/multilingual/routes.py:317
+#: app/blueprints/multilingual/routes.py:331
+msgid "Výrobný príkaz už je spárovaný"
+msgstr "Production slip is already paired"
 
-#: app/blueprints/multilingual/templates/multilingual/base.html:124
-#: app/blueprints/multilingual/templates/multilingual/base.html:157
-#: app/templates/base.html:124 app/templates/base.html:157
-msgid "Lokalizácia tagu"
-msgstr "Tag location"
+#: app/blueprints/multilingual/routes.py:349
+#, python-format
+msgid "Tag %(tag_id)s bol úspešne odpárovaný"
+msgstr "Tag %(tag_id)s has been unpaired sucessfully"
 
-#: app/blueprints/multilingual/templates/multilingual/base.html:138
-#: app/templates/base.html:138
-msgid "Lokalizovať"
-msgstr "Localize"
+#: app/blueprints/multilingual/routes.py:352
+#, python-format
+msgid "Tag %(tag_id)s nie je spárovaný"
+msgstr "Tag %(tag_id)s is not paired"
 
-#: app/blueprints/multilingual/templates/multilingual/base.html:171
-#: app/templates/base.html:171
-msgid "ID tagu"
-msgstr "Tag ID"
-
-#: app/blueprints/multilingual/templates/multilingual/base.html:172
-#: app/templates/base.html:172
-msgid "Spárovaný príkaz"
-msgstr "Paired barcode"
-
-#: app/blueprints/multilingual/templates/multilingual/base.html:173
-#: app/templates/base.html:173
-msgid "ID zóny"
-msgstr "Zone ID"
-
-#: app/blueprints/multilingual/templates/multilingual/base.html:174
-#: app/templates/base.html:174
-msgid "Typ zóny"
-msgstr "Zone Type"
-
-#: app/blueprints/multilingual/templates/multilingual/base.html:175
-#: app/templates/base.html:175
-msgid "Názov zóny"
-msgstr "Zone name"
-
-#: app/blueprints/multilingual/templates/multilingual/base.html:176
-#: app/templates/base.html:176
-msgid "Vstup do zóny"
-msgstr "Zone entrance"
-
-#: app/blueprints/multilingual/templates/multilingual/base.html:229
-#: app/templates/base.html:229
-msgid "Prepárovanie tagu"
-msgstr "Pair tag with new barcode"
-
-#: app/blueprints/multilingual/templates/multilingual/base.html:237
-#: app/templates/base.html:237
-msgid "Zadaný kód"
-msgstr "Entered code"
-
-#: app/blueprints/multilingual/templates/multilingual/base.html:237
-#: app/templates/base.html:237
-msgid "je už spárovaný. Chcete ho prepárovať s vami zadaným kódom"
-msgstr "is already paired. Do you want to unpair it and pair it to barcode"
-
-#: app/blueprints/multilingual/templates/multilingual/base.html:243
-#: app/templates/base.html:243
-msgid "Áno"
-msgstr "Yes"
-
-#: app/blueprints/multilingual/templates/multilingual/base.html:244
-#: app/templates/base.html:244
-msgid "Nie"
-msgstr "No"
+#: app/blueprints/multilingual/routes.py:377
+msgid "Tag bol úspešne spárovaný"
+msgstr "Tag has been paired sucessfully"
 
 #: app/blueprints/multilingual/templates/multilingual/index.html:13
-#: app/templates/index.html:13
-msgid "Prihlásený užívateľ :"
-msgstr "Currently logged in :"
-
-#: app/blueprints/multilingual/templates/multilingual/index.html:14
-#: app/templates/index.html:14
-msgid "Naozaj sa chcete odhlásiiť?"
-msgstr "Do you really want to log out?"
-
-#: app/blueprints/multilingual/templates/multilingual/index.html:14
-#: app/templates/index.html:14
-msgid "Odhlásiť"
-msgstr "Log out"
-
-#: app/blueprints/multilingual/templates/multilingual/index.html:25
-#: app/templates/index.html:25
 msgid "Spravovať"
 msgstr "Manage"
 
-#: app/blueprints/multilingual/templates/multilingual/index.html:25
-#: app/templates/index.html:25
+#: app/blueprints/multilingual/templates/multilingual/index.html:13
 msgid "tagy"
 msgstr "tags"
 
-#: app/blueprints/multilingual/templates/multilingual/index.html:38
-#: app/templates/index.html:38
+#: app/blueprints/multilingual/templates/multilingual/index.html:16
+#: app/templates/base.html:103 app/templates/base.html:123
+msgid "Spárovať tag"
+msgstr "Pair tag"
+
+#: app/blueprints/multilingual/templates/multilingual/index.html:20
+#: app/templates/base.html:140 app/templates/base.html:154
+msgid "Odpárovať tag"
+msgstr "Unpair tag"
+
+#: app/blueprints/multilingual/templates/multilingual/index.html:24
 msgid "Lokalizovať tag"
-msgstr "Localize tag"
+msgstr "Localise tag"
 
 #: app/blueprints/multilingual/templates/multilingual/login.html:8
-#: app/blueprints/multilingual/templates/multilingual/login.html:43
-#: app/templates/login.html:8 app/templates/login.html:43
+#: app/blueprints/multilingual/templates/multilingual/login.html:54
 msgid "Prihlásenie"
-msgstr "Log in"
+msgstr "Login"
 
-#: app/blueprints/multilingual/templates/multilingual/login.html:23
-#: app/blueprints/multilingual/templates/multilingual/login.html:25
-#: app/templates/login.html:23 app/templates/login.html:25
-msgid "Užívateľské meno"
-msgstr "Username"
-
-#: app/blueprints/multilingual/templates/multilingual/login.html:32
 #: app/blueprints/multilingual/templates/multilingual/login.html:34
-#: app/templates/login.html:32 app/templates/login.html:34
+#: app/blueprints/multilingual/templates/multilingual/login.html:36
+msgid "Užívateľské meno"
+msgstr "User name"
+
+#: app/blueprints/multilingual/templates/multilingual/login.html:43
+#: app/blueprints/multilingual/templates/multilingual/login.html:45
 msgid "Heslo"
 msgstr "Password"
+
+#: app/templates/base.html:82
+msgid "Prihlásený užívateľ"
+msgstr ""
+
+#: app/templates/base.html:83
+msgid "Odhlásiť"
+msgstr ""
+
+#: app/templates/base.html:111 app/templates/base.html:117
+#: app/templates/base.html:180
+msgid "Čiarový kód"
+msgstr "Barcode"
+
+#: app/templates/base.html:124 app/templates/base.html:155
+#: app/templates/base.html:188 app/templates/base.html:262
+msgid "Zavrieť"
+msgstr "Close"
+
+#: app/templates/base.html:147
+msgid "RTLS Tag ID"
+msgstr "RTLS Tag ID"
+
+#: app/templates/base.html:173 app/templates/base.html:206
+msgid "Lokalizácia tagu"
+msgstr "Tag localisation"
+
+#: app/templates/base.html:187
+msgid "Lokalizovať"
+msgstr "Lokalise"
+
+#: app/templates/base.html:220
+msgid "ID tagu"
+msgstr "Tag ID"
+
+#: app/templates/base.html:221
+msgid "Spárovaný príkaz"
+msgstr "Paired production slip"
+
+#: app/templates/base.html:223
+msgid "ID zóny"
+msgstr "Zone ID"
+
+#: app/templates/base.html:224
+msgid "Typ zóny"
+msgstr "Zone Type"
+
+#: app/templates/base.html:226
+msgid "Názov zóny"
+msgstr "Zone name"
+
+#: app/templates/base.html:227
+msgid "Vstup do zóny"
+msgstr "Zone entrance"
+
+#: app/templates/base.html:282
+msgid "Prepárovanie tagu"
+msgstr "Change pair"
+
+#: app/templates/base.html:290
+msgid "Zadaný kód"
+msgstr "Inserted code"
+
+#: app/templates/base.html:290
+msgid "je už spárovaný. Chcete ho prepárovať s vami zadaným kódom"
+msgstr "is already paired. Would you like to change its pair to entered code"
+
+#: app/templates/base.html:296
+msgid "Áno"
+msgstr "Yes"
+
+#: app/templates/base.html:297
+msgid "Nie"
+msgstr "No"
+
