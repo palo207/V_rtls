@@ -1,7 +1,7 @@
 # English translations for PROJECT.
 # Copyright (C) 2021 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+# FIRST AUTHOR samopalo, 2021.
 #
 msgid ""
 msgstr ""
@@ -94,11 +94,11 @@ msgstr "Password"
 
 #: app/templates/base.html:82
 msgid "Prihlásený užívateľ"
-msgstr ""
+msgstr "Logged in user"
 
 #: app/templates/base.html:83
 msgid "Odhlásiť"
-msgstr ""
+msgstr "Logout"
 
 #: app/templates/base.html:111 app/templates/base.html:117
 #: app/templates/base.html:180
@@ -114,6 +114,8 @@ msgstr "Close"
 msgid "RTLS Tag ID"
 msgstr "RTLS Tag ID"
 
+#: app/blueprints/multilingual/templates/multilingual/locate.html:3
+#: app/blueprints/multilingual/templates/multilingual/locate.html:5
 #: app/templates/base.html:173 app/templates/base.html:206
 msgid "Lokalizácia tagu"
 msgstr "Tag localisation"
@@ -122,6 +124,7 @@ msgstr "Tag localisation"
 msgid "Lokalizovať"
 msgstr "Lokalise"
 
+#: app/blueprints/multilingual/templates/multilingual/locate.html:13
 #: app/templates/base.html:220
 msgid "ID tagu"
 msgstr "Tag ID"

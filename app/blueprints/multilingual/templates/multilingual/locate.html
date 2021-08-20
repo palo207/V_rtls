@@ -1,8 +1,8 @@
 ﻿{% extends 'base.html' %}
 
-{% block title %} Lokalizácia tagu {% endblock %}
+{% block title %} {{_('Lokalizácia tagu')}} {% endblock %}
 
-{% block heading %} Lokalizácia tagu {% endblock %}
+{% block heading %} {{_('Lokalizácia tagu')}} {% endblock %}
 {% block body %}
 
 <div class="container" style="padding-top:3px">
@@ -10,10 +10,10 @@
     <table class="table table-striped">
     <thead>
       <tr style="text-align:center">
-        <th scope="col">ID tagu</th>
-	<th scope="col">Sparovaný kód</th>       
-        <th scope="col">Názov zóny</th>
-        <th scope="col">Vstup do zóny</th>
+        <th scope="col">{{_('ID tagu')}}</th>
+	<th scope="col">{{_('Sparovaný kód')}}</th>       
+        <th scope="col">{{_('Názov zóny')}}</th>
+        <th scope="col">{{_('Vstup do zóny')}}</th>
       </tr>
     </thead>
     <tbody>
