@@ -16,8 +16,7 @@ from config import (destUri,
                     database,
                     uid,
                     password,
-                    server,
-                    soft_zone_jumps)
+                    server)
 import pandas as pd
 
 def check_if_exit(zone_name):
@@ -25,10 +24,24 @@ def check_if_exit(zone_name):
 
 
 def get_outside_loc(old_zone_name,zone_name):
-    if zone_name in soft_zone_jumps.keys():
-        x = soft_zone_jumps[zone_name][0]
-        y =soft_zone_jumps[zone_name][1]
-        return x,y
+    if zone_name == 'X1':
+        return 7.38,20.34
+    elif zone_name == 'X2':
+        return 10.41,46.30
+    elif zone_name == 'X3':
+        return 19.25,46.30
+    elif zone_name == 'X4':
+        return 28.16,46.30
+    elif zone_name == 'X5':
+        return 40.51,46.30
+    elif zone_name == 'X6':
+        return 55.51,46.30
+    elif zone_name == 'X7':
+        return 93.23,46.30
+    elif zone_name == 'X8':
+        return 119.5,46.30
+    elif zone_name == 'X9':
+        return 119.5,13.38
 
 data=pd.read_excel("rtls_tag_names.xlsx", header=None)
 tag_ids = list(data.iloc[:,1])
