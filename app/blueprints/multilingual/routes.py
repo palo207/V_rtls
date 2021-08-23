@@ -69,6 +69,16 @@ db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+def get_lang():
+    if 'lang' in session and session.get('lang'):
+        g.lang_code = session.get('lang')
+        print('jazyk je en')
+    else:
+        g.lang_code = 'de'
+        print('jazyk je sk')
+    return g.lang_code
+
+
 def verify_password(stored_password, provided_password):
     """Verify a stored password against one provided by user"""
     salt = stored_password[:64]
@@ -145,11 +155,7 @@ def load_user(user_id):
 # Login page
 @multilingual.route('/',methods=['GET','POST'])
 def login():
-    if 'lang' in session and session.get('lang'):
-        g.lang_code = session.get('lang')
-    else:
-        g.lang_code = 'sk'
-
+    g.lang_code = get_lang()
     if request.method =='POST':
         username = request.form['username']
         password = request.form['password']
@@ -241,12 +247,7 @@ def Index():
     else:
         dsb=""
 
-    if 'lang' in session and session.get('lang'):
-        g.lang_code = session.get('lang')
-        print('jazyk je en')
-    else:
-        g.lang_code = 'de'
-        print('jazyk je sk')
+    g.lang_code = get_lang()
 
     if 'my_data' in session and session.get('my_data'):
         mydata = session.get('my_data')
@@ -275,6 +276,7 @@ def Index():
 # Pair tag form
 @multilingual.route('/insert',methods=['POST'])
 def insert():
+    g.lang_code = get_lang()
     if request.method == 'POST':
         tag_id = request.form['tag_id']
         tag_id = tag_id.upper()
@@ -335,6 +337,7 @@ def insert():
 # Unpair tag button next to pair tag button
 @multilingual.route('/unpair',methods=['POST'])
 def unpair():
+    g.lang_code = get_lang()
     tag_id = request.form['tag_id']
     tag_id = tag_id.upper()
     # Delete tag and material pair
@@ -355,6 +358,7 @@ def unpair():
 # Change pair
 @multilingual.route('/change_pair',methods=['POST'])
 def change_pair():
+    g.lang_code = get_lang()
     if request.method =='POST':
         codes = request.form['yes']
         if codes == "nie":
@@ -380,6 +384,7 @@ def change_pair():
 # Locate tag page
 @multilingual.route ('/locate', methods = ['GET','POST'])
 def locate():
+    g.lang_code = get_lang()
     tag_id = request.form['tag_id']
     tag_id = tag_id.upper()
     
@@ -403,12 +408,12 @@ def locate():
 # If the localization process is successfull
 @multilingual.route ('/located/<tag_id>',methods = ['GET','POST'])
 def located(tag_id):
+    g.lang_code = get_lang()
     mydata = session['my_data']
     return render_template('multilingual/locate.html',
                                         mydata=mydata,
                                         tag_id=tag_id,
                                         user=current_user.username)
-
 
 
 @multilingual.route ('/get_location/<id>', methods = ['GET','POST'])

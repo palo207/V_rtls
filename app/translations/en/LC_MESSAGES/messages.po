@@ -169,3 +169,6 @@ msgstr "Yes"
 msgid "Nie"
 msgstr "No"
 
+#: app/blueprints/multilingual/templates/multilingual/locate.html:14
+msgid "Sparovaný kód"
+msgstr "Paired code"
