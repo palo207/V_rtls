@@ -38,7 +38,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_babel import _, refresh
 from app import app
 import config as c
-
+import random
 
 multilingual = Blueprint('multilingual', __name__, template_folder='templates')
 
@@ -257,28 +257,28 @@ def Index():
 
     g.lang_code = get_lang()
 
-    if 'my_data' in session and session.get('my_data'):
-        mydata = session.get('my_data')
-        tag_id=mydata[0][0]
-        got_data,mydata=get_tag_info(tag_id)
-        if got_data:
-            mydata[0][6]= (mydata[0][6] + x_prefix) * scaling_factor_x 
-            mydata[0][7]= (mydata[0][7] + y_prefix) * scaling_factor_y
-            session['my_data']=mydata
-            #################################################################
-            #return render_template('multilingual/locate.html',mydata=mydata)
-            ################################################################
-        else:
-            flash(_('Tag %(tag_id)s sa v databáze nenachádza', tag_id =tag_id), "error")
-    else:
-        mydata=0
+    # if 'my_data' in session and session.get('my_data'):
+    #     mydata = session.get('my_data')
+    #     tag_id=mydata[0][0]
+    #     got_data,mydata=get_tag_info(tag_id)
+    #     if got_data:
+    #         mydata[0][6]= (mydata[0][6] + x_prefix) * scaling_factor_x 
+    #         mydata[0][7]= (mydata[0][7] + y_prefix) * scaling_factor_y
+    #         session['my_data']=mydata
+    #         #################################################################
+    #         #return render_template('multilingual/locate.html',mydata=mydata)
+    #         ################################################################
+    #     else:
+    #         flash(_('Tag %(tag_id)s sa v databáze nenachádza', tag_id =tag_id), "error")
+    # else:
+    #     mydata=0
 
     return render_template('multilingual/Index.html',
                            user= current_user.username,
                            dsb=dsb,i=int(i),
                            code1=code1,
                            code2=code2,
-                           mydata=mydata)
+                           mydata=0)
 
 
 # Pair tag form
@@ -413,6 +413,45 @@ def locate():
         flash(_('Tag %(tag_id)s sa v databáze nenachádza', tag_id =tag_id), "error")
         return redirect(url_for('multilingual.Index'))
 
+def generate_color():
+    clr = []
+    for i in range(0,3):
+        c = str(random.randint(0,255))
+        clr.append(c)
+    clr_code = "rgb({},{},{})".format(clr[0],clr[1],clr[2])
+    return clr_code
+
+
+@multilingual.route ('/locate_multiple', methods = ['GET','POST'])
+def locate_multiple():
+    loc_col_dict ={}
+    g.lang_code = get_lang()
+    collected_data = []
+    tag_id = request.form['tag_id']
+    tag_id = tag_id.upper()
+    tag_ids = tag_id.split(' ')
+    for id in tag_ids:
+        got_data,mydata = get_tag_info(id)
+        if got_data:
+            mydata[0][6]= (mydata[0][6] + x_prefix) * scaling_factor_x 
+            mydata[0][7]= (mydata[0][7] + y_prefix) * scaling_factor_y
+            loc_key = str(mydata[0][6])+'#'+str(mydata[0][7])
+            color = generate_color()
+            if loc_key not in loc_col_dict.keys():
+                loc_col_dict[loc_key]=color
+                mydata[0].append(color)
+            else:
+                mydata[0].append(loc_col_dict[loc_key])
+
+            collected_data.append(mydata)
+
+    return render_template('multilingual/locate_multiple.html',
+                                        collected_data=collected_data,
+                                        tag_id=tag_id,
+                                        user=current_user.username,
+                                        api_address=c.api_address,
+                                        refresh = c.refresh)
+    
 # If the localization process is successfull
 @multilingual.route ('/located/<tag_id>',methods = ['GET','POST'])
 def located(tag_id):

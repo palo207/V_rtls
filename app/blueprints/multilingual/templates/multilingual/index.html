@@ -8,25 +8,7 @@
 <!-- container 1 -->
 <div class = "container">
 
-    <div class = "jumbotron p-3">
-      <div class = "well text-center">
-              <h2>{{_('Spravovať')}} <b>{{_('tagy')}}</b></h2>
-
-          <button id="btn1" type="button" class="btn btn-success btn-lg" {{dsb}}
-            data-toggle="modal" data-target="#mymodal">{{_('Spárovať tag')}}</button>
-
-
-          <button id="btn1" type="button" class="btn btn-danger btn-lg " {{dsb}}
-            data-toggle="modal" data-target="#mymodal1">{{_('Odpárovať tag')}}</button>
-
-
-          <button id="btn1" type="button" class="btn btn-info btn-lg "
-            data-toggle="modal" data-target="#mymodal5">{{_('Lokalizovať tag')}}</button>
-
-      </div>
-      </div>
-
-      {% with messages = get_flashed_messages(with_categories=true) %}
+  {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
       {% for category, message in messages %}
 
@@ -49,9 +31,33 @@
       {% endfor %}
       {% endif %}
       {% endwith %}
-</div>
-<!-- container 1 -->
 
+
+
+
+    <div class = "jumbotron p-3">
+      <div class = "well text-center">
+          <h2>{{_('Spravovať')}} <b>{{_('tagy')}}</b></h2>
+
+          <button id="btn1" type="button" class="btn btn-success btn-lg" {{dsb}}
+            data-toggle="modal" data-target="#mymodal">{{_('Spárovať tag')}}</button>
+        
+          <button id="btn1" type="button" class="btn btn-danger btn-lg " {{dsb}}
+            data-toggle="modal" data-target="#mymodal1">{{_('Odpárovať tag')}}</button>
+      
+          <button id="btn1" type="button" class="btn btn-info btn-lg "
+            data-toggle="modal" data-target="#mymodal5">{{_('Lokalizovať tag')}}</button>
+        
+          <button id="btn1" type="button" class="btn btn-warning btn-lg "
+            data-toggle="modal" data-target="#mymodal6">{{_('Lokalizovať skupinu tagov')}}</button>
+          </div> 
+          </div>
+      
+
+      
+</div>
+
+<!-- container 1 -->
 <!-- tabulka so sparovanymi tagmi -->
 <!-- <div class = "container">
 <div class="table-responsive">

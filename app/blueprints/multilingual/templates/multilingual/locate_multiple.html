@@ -1,0 +1,72 @@
+﻿{% extends 'base.html' %}
+
+{% block title %} {{_('Lokalizácia tagu')}} {% endblock %}
+
+{% block heading %} {{_('Lokalizácia tagu')}} {% endblock %}
+{% block body %}
+
+<div class="container" style="padding-top:3px">
+   <div style="overflow: auto; margin-top: 5px">
+    <table class="table table-striped">
+    <thead>
+      <tr style="text-align:center">
+        <th scope="col">{{_('Farba')}}</th>
+        <th scope="col">{{_('ID tagu')}}</th>
+	<th scope="col">{{_('Sparovaný kód')}}</th>       
+        <th scope="col">{{_('Názov zóny')}}</th>
+        <th scope="col">{{_('Vstup do zóny')}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for mydata in collected_data %}
+      <tr>
+        <td id="rr0" style="text-align:center;vertical-align:middle;"><span class="dot" style = "height: 25px; width: 25px; background-color: {{mydata[0][-1]}}; border-radius: 50%; display: inline-block;"></span></td>
+        <td id="rr1" style="text-align:center;vertical-align:middle;">{{mydata[0][0]}}</td>
+	
+        <td id="rr2" style="text-align:center;vertical-align:middle;">{{mydata[0][5]}}</td>
+        <td id="rr3" style="text-align:center;vertical-align:middle;">{{mydata[0][3]}}</td>
+        <td id="rr4" style="text-align:center;vertical-align:middle;">{{mydata[0][4]}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+   </table>
+   </div>
+</div>
+<!--tabulka-->
+
+
+
+<div class="container" style="padding-top:10px">
+<div class="form-group">
+<div class="parent" style="position:relative;" >
+  <img style = "z-index: -1;" src="{{ url_for('static',filename= 'layout.jpg') }}" class="mx-auto d-block img-thumbnail"  alt="Responsive image" >
+  {% for mydata in collected_data %}
+  <span class="dot" style= "height: 25px; width: 25px; background-color: {{mydata[0][-1]}}; border-radius: 50%; z-index: 3; position: absolute; top:{{mydata[0][7]}}%; left: {{mydata[0][6]}}%;"></span>
+  <!-- <img id="image_to_move" src="{{ url_for('static',filename= 'dot.png') }}" class="blink_me"   style= "z-index: 3;position: absolute; top:{{mydata[0][7]}}%; left: {{mydata[0][6]}}%;background :rgba(0, 0, 0, 0);height:50px;width:auto"> -->
+  {% endfor %}
+</div>
+</div>
+</div>
+
+<!-- <script type=text/javascript>
+  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+<script type=text/javascript>
+
+  function get_no() {
+      $.getJSON("{{api_address}}/get_pos/{{tag_id}}",
+              function(data) {
+                  document.getElementById("image_to_move").style.top = data.ypos;
+                  document.getElementById("image_to_move").style.left = data.xpos;
+                  $('#rr1').text(data.tag_id);
+                  $('#rr2').text(data.paired);
+                  $('#rr3').text(data.zone);
+                  $('#rr4').text(data.enter_zone);
+		  $('#rr5').text(data.prod_no);
+              }
+      );
+  }
+  setInterval('get_no()', {{refresh}});
+</script> -->
+
+{% endblock %}

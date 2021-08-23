@@ -196,81 +196,37 @@
 </div>
 <!--Forma na lokalizáciu-->
 
-{%if i ==2%}
-<!-- mapa lokalizacia -->
-<div id="locate" class="modal fade" role = "dialog"  tabindex="-1" >
-  <div class="modal-dialog modal-xl">
+<!-- Forma na lokalizáciu -->
+<div id="mymodal6" class="modal fade" role = "dialog"  tabindex="-1">
+  <div class= "modal-dialog modal-dialog-centered">
   <div class= "modal-content">
-
       <div class= "modal-header">
-          <h4 class="modal-title">{{_('Lokalizácia tagu')}}</h4>
+
+      <h4 class="modal-title">{{_('Lokalizácia skupiny tagov')}}</h4>
       </div>
-
-
       <div class="modal-body">
-          <form action ="{{url_for('multilingual.located')}}" method="POST">
 
-<!--tabulka-->
-         <div class="form-group">
-      <div style="overflow: auto">
-          <table class="table table-striped">
-          <thead>
-            <tr>
+          <form action ="{{url_for('multilingual.locate_multiple')}}" method="POST">
 
-              <th scope="col">{{_('ID tagu')}}</th>
-              <th scope="col">{{_('Spárovaný príkaz')}}</th>
-		<!--
-              <th scope="col">{{_('ID zóny')}}</th>
-              <th scope="col">{{_('Typ zóny')}}</th>
-		-->
-              <th scope="col">{{_('Názov zóny')}}</th>
-              <th scope="col">{{_('Vstup do zóny')}}</th>
-
-
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{{mydata[0][0]}}</td>
-              <td>{{mydata[0][5]}}</td>
-		<!--
-              <td>{{mydata[0][1]}}</td>
-              <td>{{mydata[0][2]}}</td>
-		-->
-              <td id="PosX">{{mydata[0][3]}}</td>
-              <td>{{mydata[0][4]}}</td>
-            </tr>
-          </tbody>
-        </table>
-         </div>
-        </div>
-<!--tabulka-->
-
-
-<div class="container">
-<div class="form-group">
-
-<div >
-  <img src="{{ url_for('static',filename= 'layout.jpg') }}" class="mx-auto d-block img-thumbnail"  alt="Responsive image" >
-  <img src="{{ url_for('static',filename= 'dot.png') }}" class="blink_me"   style= "position: absolute; top: {{mydata[0][7]}}%; left: {{mydata[0][6]}}%;background :rgba(0, 0, 0, 0);height:50px;width:auto">
-</div>
-
-
-</div>
-</div>
           <div class="form-group">
-               <button class="btn btn-secondary float-right" name="btn"  value= "close" type="submit">{{_('Zavrieť')}}</button>
+              <label>{{_('Zadajte skupinu kódov')}}</label>
+              <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" name="tag_id" required="1">
+          </div>
+
+          <div class="form-group">
+              <button class="btn btn-primary" type="submit">{{_('Lokalizovať')}}</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">{{_('Zavrieť')}}</button>
           </div>
 
           </form>
 
-
+      </div>
     </div>
   </div>
 </div>
-</div>
-<!-- mapa lokalizacia -->
-{%endif%}
+<!--Forma na lokalizáciu-->
+
+
 
 <!-- Forma na preparovanie -->
 {%if i ==1%}
