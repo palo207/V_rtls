@@ -413,7 +413,9 @@ def located(tag_id):
     return render_template('multilingual/locate.html',
                                         mydata=mydata,
                                         tag_id=tag_id,
-                                        user=current_user.username)
+                                        user=current_user.username,
+                                        api_address=c.api_address,
+                                        refresh = c.refresh)
 
 
 @multilingual.route ('/get_location/<id>', methods = ['GET','POST'])

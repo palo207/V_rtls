@@ -45,7 +45,7 @@
 <script type=text/javascript>
 
   function get_no() {
-      $.getJSON("http://127.0.0.1:5000/get_pos/{{tag_id}}",
+      $.getJSON("{{api_address}}/get_pos/{{tag_id}}",
               function(data) {
                   document.getElementById("image_to_move").style.top = data.ypos;
                   document.getElementById("image_to_move").style.left = data.xpos;
@@ -57,7 +57,7 @@
               }
       );
   }
-  setInterval('get_no()', 200);
+  setInterval('get_no()', {{refresh}});
 </script>
 
 {% endblock %}
