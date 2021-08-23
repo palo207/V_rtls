@@ -69,6 +69,14 @@ db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+def hash_password(password):
+    # Hash a password for storing in db
+    salt = hashlib.sha256(os.urandom(60)).hexdigest().encode('ascii')
+    pwdhash = hashlib.pbkdf2_hmac('sha512', password.encode('utf-8'), 
+                                salt, 100000)
+    pwdhash = binascii.hexlify(pwdhash)
+    return (salt + pwdhash).decode('ascii')
+
 def get_lang():
     if 'lang' in session and session.get('lang'):
         g.lang_code = session.get('lang')
@@ -162,7 +170,7 @@ def login():
         user = users.query.filter_by(username=username).first()
         if user:
             vp = True
-            # vp = verify_password(user.password, password)
+            vp = verify_password(user.password, password)
             if vp:
                 login_user(user)
                 return redirect(url_for('multilingual.Index'))
@@ -242,7 +250,7 @@ def Index():
         code1 = 0
         code2 = 0
 
-    if current_user.username=="user":
+    if current_user.username in c.users:
         dsb="disabled"
     else:
         dsb=""
@@ -560,3 +568,14 @@ def get_id(mac):
     if my_data is None:
         return "Not in database"
     return jsonify([my_data.tag_id,my_data.address])
+
+@multilingual.route('/create_user/<username>/<password>')
+def create_user(username,password):
+        try:
+            password = hash_password(password)
+            user= users(username = username, password = password)
+            db.session.add(user)
+            db.session.commit()
+            return("User created sucesfully")
+        except Exception as e:
+            return('User already exists')
