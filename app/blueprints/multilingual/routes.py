@@ -416,7 +416,14 @@ def locate():
 def generate_color():
     clr = []
     for i in range(0,3):
-        c = str(random.randint(0,255))
+        b = random.randint(0,255)
+        t = random.randint(0,255)
+        if t>b:
+            c = str(random.randint(b,t))
+        elif t<b:
+            c = str(random.randint(t,b))
+        else:
+            c = str(random.randint(0,255))
         clr.append(c)
     clr_code = "rgb({},{},{})".format(clr[0],clr[1],clr[2])
     return clr_code
@@ -427,9 +434,16 @@ def locate_multiple():
     loc_col_dict ={}
     g.lang_code = get_lang()
     collected_data = []
-    tag_id = request.form['tag_id']
-    tag_id = tag_id.upper()
-    tag_ids = tag_id.split(' ')
+    try:
+        tag_id = request.form['tag_id']
+        tag_id = tag_id.upper()
+        tag_ids = tag_id.split(' ')
+        session['tag_ids'] = tag_ids
+        session['tag_id'] = tag_id
+    except:
+        tag_id = session['tag_id']
+        tag_ids = session['tag_ids']
+
     for id in tag_ids:
         got_data,mydata = get_tag_info(id)
         if got_data:
