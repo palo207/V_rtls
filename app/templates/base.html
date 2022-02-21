@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/index_new_css.css') }}">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    
+
     {% if i == 1 %}
     <script>
         $(document).ready(function(){
@@ -42,54 +42,13 @@
     </script>
     {% endif %}
 
-
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"> -->
-
     <title>{% block title %} {% endblock %}</title>
-  </head>
-  <body>
-    <!-- Vrchny JBtron -->
-    <div class="jumbotron p-3" style = "margin-bottom: 12px;">
-
-        <div class = "well text-center">
-          <h1>{% block heading %}{% endblock %}<h1>
-
-        <div class="flags">
-
-
-        <a href="{{url_for('multilingual.language',lang='sk')}}">
-            <img src="{{ url_for('static',filename= 's_flag.png') }}" alt="english" class="img-thumbnail"  style="height:35px; ">
-        </a>
-
-        <a href="{{url_for('multilingual.language',lang='en')}}">
-          <img src="{{ url_for('static',filename= 'uk_flag.png') }}" alt="english"  class="img-thumbnail" style="height:35px; ">
-        </a>
-        </div>
-    </div>
-  </div>
-
-  <div class = "container" id="cont1">
-    <div class="row">
-      <div class="col">
-  
-      </div>
-    <div class="col" align="center">
-      <a href="{{url_for('multilingual.Index')}}">
-  <img src="{{url_for('static',filename= 'home.png') }}" style ="height:30px;">
-  </a>
-  </div>
-  <div class="col">
-    <h5>{{_('Prihlásený užívateľ')}} : <b>{{user}}</b>
-    <a  href="{{url_for('multilingual.logout')}}"><button type="button" class="btn btn-danger btn-xs ">{{_('Odhlásiť') }}</button></a>
-      </h5>
-    </div>
-  </div> 
-    </div>
-
-
-    <!-- Vrchny JBtron -->
-
-
+    <link rel = "icon" href = "{{ url_for('static',filename='logo.png') }}" type = "image/x-icon">
+    </head>
+    <body>
+      {%include 'navbar.html'%}
+      <br>
+      </br>
 
 {% block body %}
 {% endblock %}
@@ -262,8 +221,6 @@
 </div>
 {% endif %}
 <!--Forma na preparovanie-->
-
-
 
 <!-- java scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

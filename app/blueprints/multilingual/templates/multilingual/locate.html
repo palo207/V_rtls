@@ -1,35 +1,33 @@
-﻿{% extends 'base.html' %}
-
+{% extends 'base.html' %}
 {% block title %} {{_('Lokalizácia tagu')}} {% endblock %}
-
-{% block heading %} {{_('Lokalizácia tagu')}} {% endblock %}
 {% block body %}
-
 <div class="container" style="padding-top:3px">
-   <div style="overflow: auto; margin-top: 5px">
-    <table class="table table-striped">
-    <thead>
-      <tr style="text-align:center">
-        <th scope="col">{{_('ID tagu')}}</th>
-	<th scope="col">{{_('Sparovaný kód')}}</th>       
-        <th scope="col">{{_('Názov zóny')}}</th>
-        <th scope="col">{{_('Vstup do zóny')}}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td id="rr1" style="text-align:center;vertical-align:middle;">{{mydata[0][0]}}</td>
-	
-        <td id="rr2" style="text-align:center;vertical-align:middle;">{{mydata[0][5]}}</td>
-        <td id="rr3" style="text-align:center;vertical-align:middle;">{{mydata[0][3]}}</td>
-        <td id="rr4" style="text-align:center;vertical-align:middle;">{{mydata[0][4]}}</td>
-      </tr>
-    </tbody>
-   </table>
-   </div>
+<div class = "well text-center">
+  <h2>{{_('Lokalizácia tagu')}} <b>{{_(tag_id)}}</b></h2>
+  <br></br>
+</div>
+  <div style="overflow: auto; margin-top: 5px">
+   <table class="table table-striped">
+   <thead>
+     <tr style="text-align:center">
+       <th scope="col">{{_('ID tagu')}}</th>
+      <th scope="col">{{_('Sparovaný kód')}}</th>       
+       <th scope="col">{{_('Názov zóny')}}</th>
+       <th scope="col">{{_('Vstup do zóny')}}</th>
+     </tr>
+   </thead>
+   <tbody>
+     <tr>
+       <td id="rr1" style="text-align:center;vertical-align:middle;">{{mydata[0][0]}}</td>
+       <td id="rr2" style="text-align:center;vertical-align:middle;">{{mydata[0][5]}}</td>
+       <td id="rr3" style="text-align:center;vertical-align:middle;">{{mydata[0][3]}}</td>
+       <td id="rr4" style="text-align:center;vertical-align:middle;">{{mydata[0][4]}}</td>
+     </tr>
+   </tbody>
+  </table>
+  </div>
 </div>
 <!--tabulka-->
-
 <div class="container" style="padding-top:10px">
 <div class="form-group">
 <div class="parent" style="position:relative;" >
@@ -59,5 +57,4 @@
   }
   setInterval('get_no()', {{refresh}});
 </script>
-
 {% endblock %}

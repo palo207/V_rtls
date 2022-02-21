@@ -341,7 +341,6 @@ def insert():
         flash(_('Výrobný príkaz už je spárovaný'))
         return redirect(url_for('multilingual.Index'))
 
-
 # Unpair tag button next to pair tag button
 @multilingual.route('/unpair',methods=['POST'])
 def unpair():
@@ -362,6 +361,11 @@ def unpair():
     else:
         flash(_('Tag %(tag_id)s nie je spárovaný', tag_id =tag_id),"error")
         return redirect(url_for('multilingual.Index'))
+
+# Contact
+@multilingual.route('/contact')
+def contact():
+    return render_template('multilingual/contact.html')
 
 # Change pair
 @multilingual.route('/change_pair',methods=['POST'])
@@ -408,7 +412,6 @@ def locate():
         if version == 2:
             return redirect(url_for('multilingual.located', tag_id = tag_id))
                 
-
     else:
         flash(_('Tag %(tag_id)s sa v databáze nenachádza', tag_id =tag_id), "error")
         return redirect(url_for('multilingual.Index'))
@@ -632,3 +635,5 @@ def create_user(username,password):
             return("User created sucesfully")
         except Exception as e:
             return('User already exists')
+
+

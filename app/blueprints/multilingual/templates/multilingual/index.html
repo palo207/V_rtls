@@ -1,14 +1,69 @@
 {% extends 'base.html' %}
-
 {% block title %} RTLS {% endblock %}
-
-{% block heading %} RTLS {% endblock %}
 {% block body %}
-
 <!-- container 1 -->
 <div class = "container">
+ 
+  
 
-  {% with messages = get_flashed_messages(with_categories=true) %}
+      <div class = "well text-center">
+        <h2>{{_('Správa')}} <b>{{_('RTLS')}}</b></h2>
+      </div>
+      <br></br>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <h5 class="card-header" style="background-color:rgb(59, 172, 87)">Párovanie tagu</h5>
+            <div class="card-body">
+              <p class="card-text">Pomocou tlačidla spárujete výrobný príkaz s tagom.</p>
+              <div class = "well text-center">
+              <a href="#" class="btn" style="background-color:rgb(59, 172, 87)" data-toggle="modal" data-target="#mymodal">Spárovať tag</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="card">
+              <h5 class="card-header" style="background-color:rgb(40, 158, 179)">Lokalizácia tagu</h5>
+              <div class="card-body">
+              <p class="card-text">Lokalizácia tagu v priestore výrobného podniku.</p>
+              <div class = "well text-center">
+              <a href="#" class="btn" style="background-color:rgb(40, 158, 179)" data-toggle="modal" data-target="#mymodal5">Lokalizovať tag</a>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br></br>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+              <h5 class="card-header" style="background-color:rgb(207, 45, 72)">Odpárovanie tagu</h5>
+              <div class="card-body">
+              <p class="card-text">Pomocou tlačidla odpárujete tag od výrobného príkazu.</p>
+              <div class = "well text-center">
+              <a href="#" class="btn" style="background-color:rgb(207, 45, 72)" data-toggle="modal" data-target="#mymodal1">Odpárovať tag</a>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="card">
+              <h5 class="card-header" style="background-color:rgb(129, 150, 160)">Lokalizácia skupiny tagov</h5>
+              <div class="card-body">
+              <p class="card-text">Lokalizácia skupiny tagov v priestore výrobného podniku.</p>
+              <div class = "well text-center">
+              <a href="#" class="btn" style="background-color:rgb(129, 150, 160)" data-toggle="modal" data-target="#mymodal6">Lokalizovať skupinu tagov</a>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br></br>
+      {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
       {% for category, message in messages %}
 
@@ -17,7 +72,7 @@
           <button type="button" class="close" data-dismiss="alert" aria-label="close">
               <span aria-hidden = "true">x</span>
           </button>
-          <h1>{{message}}</h1>
+          <h5>{{message}}</h1>
       </div>
 
       {% else %}
@@ -25,37 +80,43 @@
           <button type="button" class="close" data-dismiss="alert" aria-label="close">
               <span aria-hidden = "true">x</span>
           </button>
-          <h1>{{message}}</h1>
+          <h5>{{message}}</h5>
       </div>
       {% endif %}
       {% endfor %}
       {% endif %}
       {% endwith %}
+      <!-- <div class = "well text-center">
+          <h2>{{_('Správa')}} <b>{{_('RTLS')}}</b></h2>
 
-
-
-
-    <div class = "jumbotron p-3">
-      <div class = "well text-center">
-          <h2>{{_('Spravovať')}} <b>{{_('tagy')}}</b></h2>
-
-          <button id="btn1" type="button" class="btn btn-success btn-lg" {{dsb}}
-            data-toggle="modal" data-target="#mymodal">{{_('Spárovať tag')}}</button>
-        
-          <button id="btn1" type="button" class="btn btn-danger btn-lg " {{dsb}}
-            data-toggle="modal" data-target="#mymodal1">{{_('Odpárovať tag')}}</button>
-      
-          <button id="btn1" type="button" class="btn btn-info btn-lg "
-            data-toggle="modal" data-target="#mymodal5">{{_('Lokalizovať tag')}}</button>
-        
-          <button id="btn1" type="button" class="btn btn-warning btn-lg "
-            data-toggle="modal" data-target="#mymodal6">{{_('Lokalizovať skupinu tagov')}}</button>
-          </div> 
+          <div class ="row justify-content-md-center">
+            <div class="col col-lg-2">
+            </div>
+            <div class="col-md-auto">
+              <button id="btn1" type="button" class="btn btn-success btn-lg" {{dsb}}
+                data-toggle="modal" data-target="#mymodal">{{_('Spárovať tag')}}
+              </button>
+              <button id="btn1" type="button" class="btn btn-info btn-lg "
+                data-toggle="modal" data-target="#mymodal5">{{_('Lokalizovať tag')}}
+              </button>
+            </div>
+            <div class="col col-lg-2"> 
+            </div>
           </div>
-      
-
-      
-</div>
+          <div class ="row justify-content-md-center">
+            <div class="col col-lg-2">
+            </div>
+            <div class="col-md-auto">
+              <button id="btn1" type="button" class="btn btn-danger btn-lg " {{dsb}}
+              data-toggle="modal" data-target="#mymodal1">{{_('Odpárovať tag')}}</button>
+              <button id="btn1" type="button" class="btn btn-warning btn-lg "
+              data-toggle="modal" data-target="#mymodal6">{{_('Lokalizovať skupinu tagov')}}</button>
+            </div>
+            <div class="col col-lg-2"> 
+            </div>
+          </div>     
+      </div>  -->
+        </div>
 
 <!-- container 1 -->
 <!-- tabulka so sparovanymi tagmi -->
@@ -87,6 +148,7 @@
 </div>
 </div> -->
 <!-- tabulka so sparovanymi tagmi -->
+
 
 
 {% endblock %}

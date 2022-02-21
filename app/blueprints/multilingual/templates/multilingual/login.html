@@ -1,66 +1,83 @@
-
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{_('Prihlásenie')}}</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-  <link rel="stylesheet" href="{{ url_for('static',filename='css/index_new_css.css') }}">
-  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SG Prihlásenie</title>
+    <link rel = "icon" href = "{{ url_for('static',filename='logo.png') }}" type = "image/x-icon">
+    
+    <!-- Custom fonts for this template-->
+    <link href="static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="static/css/sb-admin-2.min.css" rel="stylesheet">
+
 </head>
 
-<body>
+<body style="background-color:rgba(86, 87, 88, 0.794)">
 
-  <section id="login" class="hero is-info is-fullheight">
+    <div class="container" style="margin-top: 10%;">
 
-    <div style="position: absolute; top: 15%;left:45%">
-    <a href="{{url_for('multilingual.language',lang='sk')}}">
-        <img src="{{ url_for('static',filename= 's_flag.png') }}" alt="english" class="img-thumbnail"  style="height:35px; ">
-    </a>
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
 
-    <a href="{{url_for('multilingual.language',lang='en')}}">
-      <img src="{{ url_for('static',filename= 'uk_flag.png') }}" alt="english"  class="img-thumbnail" style="height:35px; ">
-    </a>
-    </div>
+            <div class="col-xl-10 col-lg-12 col-md-9">
 
-    <div class="hero-body">
-      <div class="container">
-        <div class="columns is-centered">
-          <div class="column is-half">
-            <form method="POST">
-              <div class="field">
-                <label class="label">{{_('Užívateľské meno')}}</label>
-                <div class="control has-icons-left has-icons-right">
-                  <input class="input" type="text" name="username" placeholder="{{_('Užívateľské meno')}}">
-                  <span class="icon is-small is-left">
-                    <i class="fas fa-user"></i>
-                  </span>
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block ">
+                                <a href="https://sovagroup.sk/" style="margin-left: 15px;">
+                                <img src="{{ url_for('static',filename='login_pic.jpg') }}" style="height: 100%; width:100%" alt="">
+                            </a>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4"><strong>Prilásenie</strong></h1>
+                                    </div>
+                                    <form class="user" action = "{{url_for('multilingual.login')}}", method = "post">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user"
+                                                id="exampleInputEmail" name="username" aria-describedby="emailHelp"
+                                                placeholder="Užívateľské meno">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control form-control-user"
+                                                name = "password" id="exampleInputPassword" placeholder="Heslo">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">Prihlásiť</button>
+                                        <hr>
+                                    </form>
+                                    <hr>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="field">
-                <label class="label">{{_('Heslo')}}</label>
-                <p class="control has-icons-left">
-                  <input class="input" type="password" name="password" placeholder= {{_('Heslo')}}>
-                  <span class="icon is-small is-left">
-                    <i class="fas fa-lock"></i>
-                  </span>
-                </p>
-              </div>
-              <div class="field">
-                <p class="control">
-                  <button id="btn_login" type="submit" class="button is-success">
-                    {{_('Prihlásenie')}}
-                  </button>
-                </p>
-              </div>
-            </form>
-          </div>
+
+            </div>
+
         </div>
-      </div>
+
     </div>
-  </section>
+    <!-- Bootstrap core JavaScript-->
+    <script src="static/vendor/jquery/jquery.min.js"></script>
+    <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="static/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="static/js/sb-admin-2.min.js"></script>
+
 </body>
 
 </html>

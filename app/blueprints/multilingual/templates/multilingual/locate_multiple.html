@@ -1,11 +1,11 @@
-﻿{% extends 'base.html' %}
-
-{% block title %} {{_('Lokalizácia skupiny tagov')}} {% endblock %}
-
-{% block heading %} {{_('Lokalizácia skupiny tagov')}} {% endblock %}
+{% extends 'base.html' %}
+{% block title %}{{_('Lokalizácia skupiny tagov')}}{% endblock %}
 {% block body %}
-
 <div class="container" style="padding-top:3px">
+  <div class = "well text-center">
+  <h2>{{_('Lokalizácia skupiny')}} <b>{{_('tagov')}}</b></h2>
+  <br></br>
+</div>
    <div style="overflow: auto; margin-top: 5px">
     <table class="table table-striped">
     <thead>
@@ -33,9 +33,6 @@
    </div>
 </div>
 <!--tabulka-->
-
-
-
 <div class="container" style="padding-top:10px">
 <div class="form-group">
 <div class="parent" style="position:relative;" >
@@ -47,7 +44,6 @@
 </div>
 </div>
 </div>
-
 <!-- <script type=text/javascript>
   $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 </script>
@@ -68,5 +64,4 @@
   }
   setInterval('get_no()', {{refresh}});
 </script> -->
-
 {% endblock %}
